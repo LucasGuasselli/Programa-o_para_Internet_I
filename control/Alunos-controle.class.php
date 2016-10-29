@@ -12,10 +12,6 @@
 			$a->nome = $_POST['nome']; 
 			$a->email = $_POST['email']; 	
 			$a->curso = $_POST['curso']; 
-	
-			$_SESSION['nome'] = $a->nome;
-			$_SESSION['email'] = $a->email;
-			$_SESSION['curso'] = $a->curso;
 		
 			$aDAO = new AlunoDAO();
 					$aDAO->cadastrarAluno($a);
@@ -35,14 +31,27 @@
 			
 		case '3':
 					$aDAO = new AlunoDAO();
-					$aDAO->deletarAluno($a);
 					
+					$id = $_SESSION['matricula'];
+            
+				$aDAO->deletarAluno($id);
+				unset($_SESSION['nome']);
+				unset($_SESSION['email']);
+				unset($_SESSION['curso']);
 					
 					header("../visao/aluno/index-aluno.php");
 			break;
 		case '4':
-					$aDAO = new AlunoDAO();
-					$aDAO->buscarAluno();
+				$aDAO = new AlunoDAO();
+									
+				$array = $aDAO->buscarAluno();
+            if ($array != null) {
+                $_SESSION['aluno'] = serialize($array);
+                header("../visao/aluno/index-aluno.php");
+            }else{
+                $_SESSION['aluno'] = 'Não existe dados';
+                header("../visao/aluno/index-aluno.php");
+            }//fecha else
 					
 					
 					header("../visao/aluno/index-aluno.php");
