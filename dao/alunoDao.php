@@ -28,6 +28,17 @@
 			}
 		}//close method for new aluno
 
+		public function buscar(){
+			try {
+
+				$stat = $this->conexao->query("select nome, email, curso from aluno");
+				$array = $stat->fetchAll(PDO::FETCH_CLASS, 'Aluno');
+
+			} catch (Exception $e) {
+				echo 'Erro ao buscar dados: '.$e;
+			}
+		}//close method for search dates
+
 		public function alterarAluno($a){
 
 			try {

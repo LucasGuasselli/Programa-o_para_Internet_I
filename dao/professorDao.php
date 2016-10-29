@@ -26,7 +26,18 @@
 			} catch (Exception $e) {
 				echo 'Erro ao cadastrar Professor. Erro: '.$e;
 			}
-		}//close method for new aluno
+		}//close method for new teacher
+
+		public function buscar(){
+			try {
+
+				$stat = $this->conexao->query("select nome, data_admissao, disciplina from professor");
+				$array = $stat->fetchAll(PDO::FETCH_CLASS, 'Aluno');
+
+			} catch (Exception $e) {
+				echo 'Erro ao buscar dados: '.$e;
+			}
+		}//close method for search dates
 
 		public function alterarProfessor($p){
 
@@ -38,7 +49,7 @@
 				echo 'Erro ao alterar Professor. Erro: '.$e;
 			}
 
-		}//close method for alter aluno
+		}//close method for alter teacher
 
 		public function deletarProfessor($cod){
 
@@ -54,6 +65,6 @@
 				echo 'Erro ao deletar Professor. Erro: '.$e;
 			}
 
-		}//close method for delete aluno
+		}//close method for delete teacher
 
 	}//close class
