@@ -1,17 +1,16 @@
-<?PHP
+<?php
 		
-	public class{
+	class Professor{
 
 	private $codigo;
 	private $nome;
 	private $data_admissao;
 	private	$disciplina;
 	
-	public __construct(){
-	}
+	public function __construct(){}
 	
-	public __destruct(){
-	
+	public function __destruct(){
+		
 	}
 	
 	public function __set($atributo, $valor){
@@ -30,7 +29,4 @@
 	}	
 	
 	
-	}//fecha classe
- 
- 
- >
+}//fecha classe

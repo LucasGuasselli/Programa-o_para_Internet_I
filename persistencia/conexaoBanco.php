@@ -10,7 +10,7 @@ class ConexaoBanco extends PDO{
    public static function getInstancia(){
    	if(!isset(self::$instancia)){
 		try{
-			self::$instancia = new ConexaoBanco("mysql:dbname=escola;host=localhost","root","usbw");
+			self::$instancia = new ConexaoBanco("mysql:dbname=escola;host=localhost","root","");
 		}catch(Exception $e){
 			echo 'Erro ao conectar';
 		    exit();				

@@ -20,7 +20,6 @@
 				$stat->bindValue(1, $a->nome);
 				$stat->bindValue(2, $a->email);
 				$stat->bindValue(3, $a->curso);
-
 				$stat->execute();
 
 			} catch (Exception $e) {

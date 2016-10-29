@@ -1,16 +1,15 @@
- <?PHP
+ <?php
 		
-	public class{
+	class Aluno{
 
 	private $matricula;
 	private $nome;
 	private	$email;
 	private	$curso;
 	
-	public __construct(){
-	}
+	public function __construct(){}
 	
-	public __destruct(){
+	public function __destruct(){
 	
 	}
 	
@@ -22,14 +21,4 @@
 		return $this->$valor;
 	}//fecha get
 	
-	public function __toString(){
-		return '<p>Matricula: '.$this->matricula.
-				'<br>Nome: '.$this->nome.
-				'<br>Email: '.$this->email.
-				'<br>Curso: '.$this->curso.'</p>';
-	}	
-	
-	}//fecha classe
- 
- 
- >
+}//fecha classe

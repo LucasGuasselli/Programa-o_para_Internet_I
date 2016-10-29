@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<div class="formu">
-			<form method="post" action="../dao/alunoDao" class="form-inline">
+			<form method="post" action="../../control/Alunos-controle.class.php?op=1" class="form-inline">
 			  <div class="form-group">
 			    <label for="exampleInputName2">Nome</label>
 			    <input type="text" class="form-control" name="nome" placeholder="Jane Doe">

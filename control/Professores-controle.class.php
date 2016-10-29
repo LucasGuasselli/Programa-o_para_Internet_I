@@ -3,12 +3,12 @@
 	session_start();
 
 	require '../model/Professores.class.php';
-	require '../dao/professoreDao.php';
+	require '../dao/professorDao.php';
 	
-	switch($_POST['op']){
+	switch($_GET['op']){
 		case '1':
-			$p = new p();
-
+			$p = new Professor();
+			
 			$p->nome = $_POST['nome']; 
 			$p->data_admissao = $_POST['dataAd']; 	
 			$p->disciplina = $_POST['disciplina']; 
@@ -18,7 +18,7 @@
 					
 					$_SESSION['professor'] = serialize($p);
 					
-					header("../visao/professor/index-professor.php");
+					header("location:../visao/professor/index-professor.php");
 			break;
 
 		case  '2':
@@ -26,7 +26,7 @@
 					$pDAO->alterarProfessor($p);
 					
 								
-					header("../visao/professor/index-professor.php");
+					header("location:../visao/professor/index-professor.php");
 			break;
 			
 		case '3':
@@ -39,7 +39,7 @@
 				unset($_SESSION['data_admissao']);
 				unset($_SESSION['disciplina']);
 					
-					header("../visao/professor/index-professor.php");
+					header("location:../visao/professor/index-professor.php");
 			break;		
 		case '4':
 				$pDAO = new ProfessorDAO();
@@ -52,7 +52,7 @@
                 $_SESSION['professor'] = 'Não existe dados';
                 header("../visao/aluno/index-professor.php");
             }//fecha else
-					header("../visao/aluno/index-professor.php");
+					header("location:../visao/aluno/index-professor.php");
 			break;
 			
 			default: echo 'erro no switch';
