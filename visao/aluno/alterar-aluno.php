@@ -9,11 +9,11 @@
 		<form method="post" action="../dao/alunoDao">
 		 <div class="form-group">
 		    <label for="exampleInputEmail1">Nome</label>
-		    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Aqui vem o nome">
+		    <input type="text" class="form-control" name="nome" placeholder="Aqui vem o nome">
 		  </div>
 		  <div class="form-group">
 		    <label for="exampleInputEmail1">Email</label>
-		    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+		    <input type="email" class="form-control" name="email" placeholder="Email">
 		  </div>
 		  <div class="form-group">
 		    <label for="exampleInputPassword1">Curso</label>
