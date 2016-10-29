@@ -13,7 +13,7 @@
 			$a->email = $_POST['email']; 	
 			$a->curso = $_POST['curso']; 
 		
-			$aDAO = new AlunoDAO();
+			$aDAO = new alunoDao();
 					$aDAO->cadastrarAluno($a);
 					
 					$_SESSION['aluno'] = serialize($a);
