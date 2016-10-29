@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,16 +21,62 @@
 			  <div class="form-group">
 			    <label for="exampleInputName2">Curso</label>
 			    <select name="curso">
-					<option value="1">Multimidia</option>
-					<option value="2">Analise e desenvolvimento de sistemas</option>
-					<option value="3">Sistemas para internet</option>
-					<option value="4">Redes</option>
-					<option value="5">Publicidade</option>
-					<option value="6">Jornalismo</option>
+					<option value="Multimidia">Multimidia</option>
+					<option value="Analise e desenvolvimento de sistemas">Analise e desenvolvimento de sistemas</option>
+					<option value="Sistemas para internet">Sistemas para internet</option>
+					<option value="Redes">Redes</option>
+					<option value="Publicidade">Publicidade</option>
+					<option value="Jornalismo">Jornalismo</option>
 				</select>
 			  </div>
 			  <button type="submit" class="btn btn-default">Enviar</button>	
 			</form>
 		</div>
+		<?php
+			if (isset($_SESSION['aluno'])) {
+         ?>
+          <table>
+            <thead>
+                <tr>
+                	<th colspan="2">Opções</th>
+                    <th>Matricula</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Curso</th>
+                </tr>
+            </thead>
+            <tfoot>
+            	<th colspan="2">Opções</th>
+                <th>Matricula</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Curso</th>
+            </tfoot>                    
+            <?php
+        }//fecha if
+        include '../../model/Alunos.class.php';
+        if (isset($_SESSION['aluno'])) {
+            $array = unserialize($_SESSION['aluno']);
+            echo '<tbody>';
+            foreach ($array as $a) {
+                //echo '<br>' . $a;
+                $id = $a->matricula;
+                echo '<tr>';
+                echo '<td><a href="alterar-aluno.php"><img src="http://icons.veryicon.com/png/System/Onebit%201-3/pencil.png" alt="Smiley face" height="20" width="20"></td>';
+                echo '<td><form name="excluir" id="excluir" method="post" action="../../control/Alunos-controle.class.php?op=3">
+                	<input type="text" name="id" value="'.$id.'" class="hidden">
+                	<button  type="submit" name="btnexcluir" id="btnexcluir"><img src="http://upload.wikimedia.org/wikipedia/commons/d/da/Crystal_button_cancel.png" alt="Smiley face" height="20" width="20"></button>
+					</form></td>';
+                echo '<td>' . $a->matricula . '</td>';
+                echo '<td>' . $a->nome . '</td>';
+                echo '<td>' . $a->email . '</td>';
+                echo '<td>' . $a->curso . '</td>';
+                echo '</tr>';
+            }
+            echo '</tbody>';
+            echo '</table>';
+            unset($_SESSION['aluno']);
+        }//fecha if
+        ?>	
 	</body>
 </html>

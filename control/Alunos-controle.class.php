@@ -16,9 +16,7 @@
 			$aDAO = new alunoDao();
 					$aDAO->cadastrarAluno($a);
 					
-					$_SESSION['aluno'] = serialize($a);
-					
-					header("location:../visao/aluno/index-aluno.php");
+					header("location:../control/Alunos-controle.class.php?op=4");
 			break;
 
 		case  '2':
@@ -30,21 +28,21 @@
 			break;
 			
 		case '3':
-					$aDAO = new AlunoDAO();
+				$aDAO = new alunoDao();
 					
-					$id = $_SESSION['matricula'];
+				$id = $_POST['id'];
             
 				$aDAO->deletarAluno($id);
 				unset($_SESSION['nome']);
 				unset($_SESSION['email']);
 				unset($_SESSION['curso']);
 					
-					header("location:../visao/aluno/index-aluno.php");
+				header("location:../control/Alunos-controle.class.php?op=4");
 			break;
 		case '4':
-				$aDAO = new AlunoDAO();
+				$aDAO = new alunoDao();
 									
-				$array = $aDAO->buscarAluno();
+				$array = $aDAO->buscar();
             if ($array != null) {
                 $_SESSION['aluno'] = serialize($array);
                 header("location:../visao/aluno/index-aluno.php");

@@ -15,7 +15,7 @@
 		public function cadastrarAluno($a){
 			try {
 				
-				$stat = $this->conexao->prepare("insert into aluno(matricula, nome, email, curso) values(null, ?, ?, ?)");
+				$stat = $this->conexao->prepare('insert into aluno(matricula, nome, email, curso) values(null, ?, ?, ?)');
 
 				$stat->bindValue(1, $a->nome);
 				$stat->bindValue(2, $a->email);
@@ -30,8 +30,10 @@
 		public function buscar(){
 			try {
 
-				$stat = $this->conexao->query("select nome, email, curso from aluno");
+				$stat = $this->conexao->query("select matricula, nome, email, curso from aluno");
 				$array = $stat->fetchAll(PDO::FETCH_CLASS, 'Aluno');
+
+				return $array;
 
 			} catch (Exception $e) {
 				echo 'Erro ao buscar dados: '.$e;
@@ -54,10 +56,9 @@
 
 			try {
 
-				$stat = $this->conexao->prepare("delete from aluno where matricula=?");
+				$stat = $this->conexao->prepare('delete from aluno where matricula=?');
 
 				$stat->bindValue(1, $mat);
-
 				$stat->execute();
 				
 			} catch (Exception $e) {
