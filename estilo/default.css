@@ -26,3 +26,24 @@ section{
 	width: auto;
 	margin-top: 20px;
 }
+
+.formu{
+	width: 98.5%;
+	height: 90px;
+	text-align: center;
+	margin: 10px;
+	padding: 13px;
+}
+
+.formu form select{
+	width: 160px;
+}
+
+.formu form button{
+	margin-left: 20px;
+	height: 37px;
+}
+
+.formu form label{
+	margin-left: 15px;
+}
