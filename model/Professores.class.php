@@ -14,11 +14,11 @@
 	}
 	
 	public function __set($atributo, $valor){
-			$this->$atributo = $this->$valor;
+			$this->$atributo = $valor;
 	}//fecha set
 	
-	public function __get($valor){
-		return $this->$valor;
+	public function __get($atributo){
+		return $this->$atributo;
 	}//fecha get
 	
 	public function __toString(){

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -31,5 +32,55 @@
 			  <button type="submit" class="btn btn-default">Enviar</button>	
 			</form>
 		</div>
+		<?php
+			if (isset($_SESSION['professor'])) {
+         ?>
+          <table>
+            <thead>
+                <tr>
+                	<th colspan="2">Opções</th>
+                    <th>Codigo</th>
+                    <th>Nome</th>
+                    <th>Data de Admissao</th>
+                    <th>Disciplina</th>
+                </tr>
+            </thead>
+            <tfoot>
+            	<th colspan="2">Opções</th>
+                <th>Codigo</th>
+                    <th>Nome</th>
+                    <th>Data Admissao</th>
+                    <th>Disciplina</th>
+            </tfoot>                    
+            <?php
+        }//fecha if
+        include '../../model/Professores.class.php';
+        if (isset($_SESSION['professor'])) {
+            $array = unserialize($_SESSION['professor']);
+            echo '<tbody>';
+            foreach ($array as $p) {
+                //echo '<br>' . $p;
+                $id = $p->codigo;
+                echo '<tr>';
+                echo '<td><form name="excluir" id="excluir" method="post" action="../../control/Professores-controle.class.php?op=5">
+                    <input type="text" name="id" value="'.$id.'" class="hidden">
+                    <button  type="submit" name="btnexcluir" id="btnexcluir"><img src="http://icons.veryicon.com/png/System/Onebit%201-3/pencil.png" alt="Smiley face" height="20" width="20"</button>
+                    </form></td>';
+                echo '<td><form name="excluir" id="excluir" method="post" action="../../control/Professores-controle.class.php?op=3">
+                	<input type="text" name="id" value="'.$id.'" class="hidden">
+                	<button  type="submit" name="btnexcluir" id="btnexcluir"><img src="http://upload.wikimedia.org/wikipedia/commons/d/da/Crystal_button_cancel.png" alt="Smiley face" height="20" width="20"></button>
+					</form></td>';
+                echo '<td>' . $p->codigo. '</td>';
+                echo '<td>' . $p->nome. '</td>';
+                echo '<td>' . $p->data_admissao. '</td>';
+                echo '<td>' . $p->disciplina. '</td>';
+                echo '</tr>';
+            }
+            echo '</tbody>';
+            echo '</table>';
+            unset($_SESSION['professor']);
+        }//fecha if
+        ?>	
+		<a href="../../index.php" class="btn btn-default" >Voltar</a>
 	</body>
 </html>

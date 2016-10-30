@@ -83,3 +83,8 @@ button:hover{
 	text-decoration: none;
 	background: transparent;
 }
+
+.desabilitado{
+	pointer-events:none;
+    outline:none;
+}

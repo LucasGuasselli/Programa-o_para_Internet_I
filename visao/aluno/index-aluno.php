@@ -62,10 +62,12 @@
                 //echo '<br>' . $a;
                 $id = $a->matricula;
                 echo '<tr>';
-                echo '<td><a href="alterar-aluno.php"><img src="http://icons.veryicon.com/png/System/Onebit%201-3/pencil.png" alt="Smiley face" height="20" width="20"></td>';
+                echo '<td><form name="altera" id="alt" method="post" action="../../control/Alunos-controle.class.php?op=5">
+                    <input type="text" name="id" value="'.$id.'" class="hidden">
+                    <button type="submit" name="btnexcluir" id="btnexcluir"><img src="http://icons.veryicon.com/png/System/Onebit%201-3/pencil.png" alt="Smiley face" height="20" width="20"></button></form></td>';
                 echo '<td><form name="excluir" id="excluir" method="post" action="../../control/Alunos-controle.class.php?op=3">
                 	<input type="text" name="id" value="'.$id.'" class="hidden">
-                	<button  type="submit" name="btnexcluir" id="btnexcluir"><img src="http://upload.wikimedia.org/wikipedia/commons/d/da/Crystal_button_cancel.png" alt="Smiley face" height="20" width="20"></button>
+                	<button type="submit" name="btnexcluir" id="btnexcluir"><img src="http://upload.wikimedia.org/wikipedia/commons/d/da/Crystal_button_cancel.png" alt="Smiley face" height="20" width="20" ></button>
 					</form></td>';
                 echo '<td>' . $a->matricula . '</td>';
                 echo '<td>' . $a->nome . '</td>';
@@ -77,6 +79,7 @@
             echo '</table>';
             unset($_SESSION['aluno']);
         }//fecha if
-        ?>	
+        ?>
+		<a href="../../index.php" class="btn btn-default" >Voltar</a>
 	</body>
 </html>

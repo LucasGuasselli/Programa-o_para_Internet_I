@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,27 +9,48 @@
 	</head>
 	<body>
 		<div class="mid aumentar">
-			<form method="post" action="../dao/alunoDao" class="formu">
+			<form method="post" action="../../control/Professores-controle.class.php?op=2" class="formu">
 			 <div class="form-group">
 			    <label for="exampleInputEmail1">Nome</label>
-			    <input type="text" class="form-control" name="nome" placeholder="Aqui vem o nome">
+			    <input type="text" class="form-control" name="nome"
+			    <?php 
+			    include '../../model/Professores.class.php';
+			    $array = unserialize($_SESSION['professor']);
+			    foreach ($array as $a)
+			    
+			    	echo 'value='.$a->nome;
+			    ?> >
 			  </div>
 			  <div class="form-group">
+		      <label for="disabledTextInput">Código</label>
+		      <input type="text" name="codigo" id="disabledTextInput" class="form-control desabilitado"
+		      	<?php 
+		      		echo 'value='.$a->codigo;
+		      	?>
+		      >
+		    </div>
+			  <div class="form-group">
 			    <label for="exampleInputEmail1">Data Admissão</label>
-			    <input type="date" class="form-control" name="dataAd">
+			    <input type="date" class="form-control" name="dataAd"
+			    <?php 
+			    		echo 'value='.$a->data_admissao;
+			    	?> >
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputPassword1">Disciplina</label>
 			    <select name="disciplina">
-					<option value="1">Multimidia</option>
-					<option value="2">Analise e desenvolvimento de sistemas</option>
-					<option value="3">Sistemas para internet</option>
-					<option value="4">Redes</option>
-					<option value="5">Publicidade</option>
-					<option value="6">Jornalismo</option>
+					<option value="Multimidia">Multimidia</option>
+					<option value="Analise e desenvolvimento de sistemas">Analise e desenvolvimento de sistemas</option>
+					<option value="Sistemas para internet">Sistemas para internet</option>
+					<option value="Redes">Redes</option>
+					<option value="Publicidade">Publicidade</option>
+					<option value="Jornalismo">Jornalismo</option>
 				</select>
+				<label><?php echo 'Curso atual: '.$a->disciplina; ?></label>
 			  </div>
+			   <?php unset($_SESSION['aluno']); ?>
 			  <button type="submit" class="btn btn-default">Enviar</button>
+			  <a href="../../control/Alunos-controle.class.php?op=4" class="btn btn-default">Cancelar</a>
 			</form>
 		</div>
 		

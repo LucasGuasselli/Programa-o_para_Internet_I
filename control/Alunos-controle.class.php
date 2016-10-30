@@ -21,10 +21,16 @@
 
 		case  '2':
 			$aDAO = new AlunoDAO();
-					$aDAO->alterarAluno($a);		
+
+				$a->nome = $_POST['nome']; 
+				$a->email = $_POST['email']; 	
+				$a->curso = $_POST['curso'];
+				$a->matricula = $_POST['matricula'];
+				$aDAO->alterarAluno($a);		
 					
-					
-					header("location:../visao/aluno/index-aluno.php");
+				
+
+				header("location:../control/Alunos-controle.class.php?op=4");
 			break;
 			
 		case '3':
@@ -43,16 +49,29 @@
 				$aDAO = new alunoDao();
 									
 				$array = $aDAO->buscar();
-            if ($array != null) {
-                $_SESSION['aluno'] = serialize($array);
-                header("location:../visao/aluno/index-aluno.php");
-            }else{
-                $_SESSION['aluno'] = 'Não existe dados';
-                header("../visao/aluno/index-aluno.php");
-            }//fecha else
+	            if ($array != null) {
+	                $_SESSION['aluno'] = serialize($array);
+	                header("location:../visao/aluno/index-aluno.php");
+	            }else{
+	                $_SESSION['aluno'] = 'Não existe dados';
+	                header("../visao/aluno/index-aluno.php");
+	            }//fecha else
+		
+				break;
+		case '5':
+
+				$id = $_POST['id'];
+				$aDAO = new alunoDao();
+									
+				$array = $aDAO->buscarParaAlterar($id);
+	            if ($array != null) {
+	                $_SESSION['aluno'] = serialize($array);
+	                header("location:../visao/aluno/alterar-aluno.php");
+	            }else{
+	                $_SESSION['aluno'] = 'Não existe dados';
+	                header("../visao/aluno/index-aluno.php");
+	            }//fecha else
 					
-					
-					header("location:../visao/aluno/index-aluno.php");
 				break;
 		default: echo 'erro no switch';
 		break;					

@@ -40,11 +40,33 @@
 			}
 		}//close method for search dates
 
+		public function buscarParaAlterar($a){
+			try {
+
+				$stat = $this->conexao->query('select matricula, nome, email, curso from aluno where matricula = '.$a.'');
+
+				$array = $stat->fetchAll(PDO::FETCH_CLASS, 'Aluno');
+
+				return $array;
+
+			} catch (Exception $e) {
+				echo 'Erro ao buscar dados: '.$e;
+			}
+		}//close method for search dates
+
 		public function alterarAluno($a){
 
 			try {
 
-				$stat = $this->conexao->prepare("");
+				$stat = $this->conexao->prepare("update Aluno set nome = ?, email = ?, curso = ? where 
+					matricula = ?");
+
+				$stat->bindValue(1, $a->nome);
+				$stat->bindValue(2, $a->email);
+				$stat->bindValue(3, $a->curso);
+				$stat->bindValue(4, $a->matricula);
+
+				$stat->execute();
 				
 			} catch (Exception $e) {
 				echo 'Erro ao alterar aluno. Erro: '.$e;

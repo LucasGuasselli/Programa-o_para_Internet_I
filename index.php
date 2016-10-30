@@ -11,7 +11,7 @@
 		<section>
 		<div class="mid">
 			<ul class="nav nav-pills nav-stacked">
-				<li><a href="visao/professor/index-prof.php" >Professores</a></li>
+				<li><a href="control/Professores-controle.class.php?op=4" >Professores</a></li>
 				<li><a href="control/Alunos-controle.class.php?op=4" >Alunos</a></li>
 			</ul>
 		</div>
